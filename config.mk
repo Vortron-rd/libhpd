@@ -1,6 +1,6 @@
 # version
-VERSION = 0.0.0-alpha
-
+VERSION = 0.0.0
+MVERSION = 0
 # Customize below to fit your system
 
 # paths
