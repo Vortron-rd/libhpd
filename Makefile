@@ -19,7 +19,9 @@ libhpd: ${OBJ}
 
 clean:
 	rm -f libhpd.so ${OBJ} libhpd-${VERSION}.tar.gz ;
-
+test: ${OBJ}
+	${CC} -o $@ ${OBJ} -pedantic -Wall -Wno-deprecated-declarations -O0 -g ${LDFLAGS}
+	
 dist: clean
 	mkdir -p libhpd-${VERSION}
 	cp -R LICENSE Makefile README.md config.mk\

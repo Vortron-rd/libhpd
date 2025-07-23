@@ -36,6 +36,7 @@ int readtable(int row, int column, FILE *table) {
 		
 	return ret;
 }
+//Sister Function to readtable() for getting data from /proc/cpuinfo by processor & lines below
 char * readcpuinfo(int processor, int line) {
 	FILE *cpuinfo = fopen("/proc/cpuinfo", "r");
 	fseek(cpuinfo, 0, SEEK_SET);
@@ -73,12 +74,14 @@ int cpust(int core, int stat) {
 	int ret = readtable((core+1),stat, statfile);
 	return ret;
 }
+
+//Function for getting 
 int clockcyclet(int core) {
-	int total = 0;
+	int ret = 0;
 	for(int i =0; i < 10; i++) {
-		total = total + cpust(core, i);
+		ret = ret + cpust(core, i);
 	}
-	return total;
+	return ret;
 }
 float cpustm(int core, int stat, int time) {
 	int total1 = clockcyclet(core);
@@ -99,4 +102,22 @@ long int cpuhz(int core) {
 	ret = atoi(readcpuinfo(core,9))*1000000;
 	return ret;
 }
-
+float *cpustats(int core, int time) {
+	float *ret = malloc(sizeof(float)*4);
+	int stats[40];
+	int stats2[40];
+	int total1 = clockcyclet(core);
+	for(int i=1; i<10; i++) {
+		stats[i] = cpust(core, i);
+	}
+	sleep(time);
+	int total2 = clockcyclet(core);
+	for(int i=1; i<10; i++) {
+			stats2[i] = cpust(core, i);
+		}
+	int totald = total2-total1;
+	for(int i=1; i<10; i++) {
+		ret[i] = (float)(stats2[i]-stats[i])/totald;
+	}
+	return ret;
+}
