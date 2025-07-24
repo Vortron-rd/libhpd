@@ -103,9 +103,9 @@ long int cpuhz(int core) {
 	return ret;
 }
 float *cpustats(int core, int time) {
-	float *ret = malloc(sizeof(float)*4);
-	int stats[40];
-	int stats2[40];
+	float *ret = malloc(sizeof(float)*10);
+	int stats[sizeof(float)*10];
+	int stats2[sizeof(float)*10];
 	int total1 = clockcyclet(core);
 	for(int i=1; i<10; i++) {
 		stats[i] = cpust(core, i);
