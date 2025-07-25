@@ -13,5 +13,5 @@
 	 int cpust(int stat, int core); //Total clock ticks that the core has spent on a specific type of task. (set core=-1 for all cores)
 	 float cpustm(int core, int stat, int time); //Get Measurements over time about a stat.
 	 float *cpustats(int core, int time); //Gets measurements over time for all stats under a given core and returns them in an array.
-	 long int cpuhz(); // Hertz the cpu is running at.
+	 long int cpuhz(int core); // Hertz the core is running at.
 #endif
