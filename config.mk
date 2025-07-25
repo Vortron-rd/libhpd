@@ -1,5 +1,5 @@
 # version
-VERSION = 0.0.0
+VERSION = 0.0.1
 MVERSION = 0
 # Customize below to fit your system
 
