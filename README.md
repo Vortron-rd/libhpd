@@ -12,6 +12,6 @@ If you do use this software, please compile from source, as binary releases will
   `git clone https://github.com/Vortron-rd/libhpd.git`\
   Second, you need to run make inside the directory you cloned into.
   `cd ./libhpd ; make`\
-  If you wish to install the library you may use `make install` as root. However, this install script has not been finished and you may have to manually update the library.
+  If you wish to install the library you may use `make install` as root. If you wish to uninstall this library you may use `make uninstall` as root.
 
   
