@@ -37,6 +37,6 @@ install: all
 	link ${DESTDIR}${PREFIX}/lib/libhpd.so.${VERSION} ${DESTDIR}${PREFIX}/lib/libhpd.so.${MVERSION}
 
 uninstall:
-	rm -f ${DESTDIR}${PREFIX}/lib/libhpd.so.${VERSION}
+	rm -f ${DESTDIR}${PREFIX}/lib/libhpd.so.${VERSION} ${DESTDIR}${PREFIX}/lib/libhpd.so.${MVERSION} ${DESTDIR}${PREFIX}/lib/libhpd.so
 
 .PHONY: all clean dist install uninstall
