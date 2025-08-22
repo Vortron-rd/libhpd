@@ -75,7 +75,6 @@ int cpust(int core, int stat) {
 	return ret;
 }
 
-//Function for getting 
 int clockcyclet(int core) {
 	int ret = 0;
 	for(int i =0; i < 10; i++) {
@@ -83,6 +82,12 @@ int clockcyclet(int core) {
 	}
 	return ret;
 }
+long int cpuhz(int core) {
+	long int ret;
+	ret = atoi(readcpuinfo(core,9))*1000000;
+	return ret;
+}
+
 float cpustm(int core, int stat, int time) {
 	int total1 = clockcyclet(core);
 	int stat1 = cpust(core, stat);
@@ -97,11 +102,7 @@ float cpustm(int core, int stat, int time) {
 	
 	return ret;
 }
-long int cpuhz(int core) {
-	long int ret;
-	ret = atoi(readcpuinfo(core,9))*1000000;
-	return ret;
-}
+
 float *cpustats(int core, int time) {
 	float *ret = malloc(sizeof(float)*10);
 	int stats[sizeof(float)*10];
@@ -120,4 +121,40 @@ float *cpustats(int core, int time) {
 		ret[i] = (float)(stats2[i]-stats[i])/totald;
 	}
 	return ret;
+}
+int *gettscpu(int core) {
+	int *ret= malloc(sizeof(int)*11);
+	for(int i=1; i<11; i++) {
+			ret[i] = cpust(core, i);
+		}
+	return ret;
+}
+int *tsdiff(int *ts1, int *ts2) {
+	int *ret = malloc(sizeof(int)*11);
+	for(int i=1; i<11; i++) {
+		ret[i] = ts1[i]-ts2[i];	
+	}
+	return ret;
+}
+float *tspercents(int *ts1, int *ts2) {
+	float *ret = malloc(sizeof(float)*11);
+	int total1 =0;
+	int total2 =0;
+	for(int i=0; i<10; i++) {
+		total1 = total1 + ts1[i];
+		total2 = total2 + ts2[i];
+	}
+	int totald = total2-total1;
+	for(int i=1; i<11; i++) {
+		ret[i] = (float)(ts2[i]-ts1[i])/totald;
+	}
+	return ret;
+}
+int istsvalid(int* ts) {
+	if(ts == NULL) {return -1;}
+	if(ts[0] != 0) {return -2;}
+	for(int i=1; i<11; i++) {
+		if(ts[i] < 0 || NULL) {return -3;}
+	}
+	return 0;
 }

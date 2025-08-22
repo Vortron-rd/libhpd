@@ -15,6 +15,7 @@ LIBS =
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700L -DVERSION=\"${VERSION}\"
 #CFLAGS   = -g -std=c99 -pedantic -Wall -O0 ${INCS} ${CPPFLAGS}
 CFLAGS   =  -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}
+TESTCFLAGS   =  -g -pedantic -Wall -Wno-deprecated-declarations -O0 ${INCS} ${CPPFLAGS}
 LDFLAGS  = ${LIBS}
 
 

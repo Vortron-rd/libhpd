@@ -10,7 +10,6 @@ all: libhpd
 	${CC} -c -fPIC ${CFLAGS} $<
 
 ${OBJ}: config.mk
-
 config.h:
 	cp config.def.h $@
 
@@ -20,7 +19,7 @@ libhpd: ${OBJ}
 clean:
 	rm -f libhpd.so ${OBJ} libhpd-${VERSION}.tar.gz ;
 test: ${OBJ}
-	${CC} -o $@ ${OBJ} -pedantic -Wall -Wno-deprecated-declarations -O0 -g ${LDFLAGS}
+	${CC} -o $@ ${SRC} ${TESTCFLAGS}
 	
 dist: clean
 	mkdir -p libhpd-${VERSION}
