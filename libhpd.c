@@ -127,6 +127,7 @@ int *gettscpu(int core) {
 	for(int i=1; i<11; i++) {
 			ret[i] = cpust(core, i);
 		}
+	ret[0] = core;
 	return ret;
 }
 int *tsdiff(int *ts1, int *ts2) {
@@ -152,7 +153,7 @@ float *tspercents(int *ts1, int *ts2) {
 }
 int istsvalid(int* ts) {
 	if(ts == NULL) {return -1;}
-	if(ts[0] != 0) {return -2;}
+	if(ts[0] < 0) {return -2;}
 	for(int i=1; i<11; i++) {
 		if(ts[i] < 0 || NULL) {return -3;}
 	}
